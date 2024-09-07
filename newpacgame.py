@@ -54,12 +54,12 @@ def main():
     pygame.init()                                 # Pygameの初期化
     screen = pygame.display.set_mode((450,450))  # 800*600の画面
     
-    gPng = pygame.image.load("hpatimon.png").convert_alpha()   #画像を読み込む
-    ePng = pygame.image.load("patimon.png").convert_alpha()   #画像を読み込む
-    pPng = pygame.image.load("pac.png").convert_alpha()   #画像を読み込む　　monster関連
-    p2Png = pygame.image.load("pac2.png").convert_alpha()   #画像を読み込む
-    p3Png = pygame.image.load("pac3.png").convert_alpha()   #画像を読み込む
-    p4Png = pygame.image.load("pac4.png").convert_alpha()   #画像を読み込む
+    gPng = pygame.image.load("img/hpatimon.png").convert_alpha()   #画像を読み込む
+    ePng = pygame.image.load("img/patimon.png").convert_alpha()   #画像を読み込む
+    pPng = pygame.image.load("img/pac.png").convert_alpha()   #画像を読み込む　　monster関連
+    p2Png = pygame.image.load("img/pac2.png").convert_alpha()   #画像を読み込む
+    p3Png = pygame.image.load("img/pac3.png").convert_alpha()   #画像を読み込む
+    p4Png = pygame.image.load("img/pac4.png").convert_alpha()   #画像を読み込む
     hx=350
     hy=200
     SIZE=50
@@ -72,8 +72,6 @@ def main():
     hg=4
     hr=7
     hct=0
-    if M1.g1==hg and M1.y1==hy:
-        pPng=pygame.image.load("sibou.png").convert_alpha()
     map=[[1,1,1,1,1,1,1,1,1,],
          [1,0,0,0,0,0,0,0,1,],
          [1,0,0,0,1,0,0,0,1,],
