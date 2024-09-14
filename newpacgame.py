@@ -67,8 +67,10 @@ def main():
     M2=Monster(p2Png,3,2)
     M3=Monster(p3Png,4,7)
     M4=Monster(p4Png,5,3)
-
+    win=100
     ct=0
+    wct=0
+    bg1=0
     hg=4
     hr=7
     hct=0
@@ -98,7 +100,6 @@ def main():
         M2.update(map)
         M3.update(map)
         M4.update(map)
-        print(M1.hp)
         if M1.hp==1:
             M1.draw(screen)
         if M2.hp==1:
@@ -116,50 +117,90 @@ def main():
             M3.hp=0
         if M4.g1==hg and M4.y1==hy:
             M4.hp=0
+        
         ct=ct+1
         if ct==30:
             ct=0
             if rnd1==1 and map[M1.g1][M1.y1+1]==0 :
+                
                 M1.y1=M1.y1+1
             
+                
+            
             if rnd1==2 and map[M1.g1][M1.y1-1]==0:
+                
                 M1.y1=M1.y1-1
-            if rnd1==3 and map[M1.g1+1][M1.y1]==0 :
+            if rnd1==3 and map[M1.g1+1][M1.y1]==0:
+                
                 M1.g1=M1.g1+1
             if rnd1==4 and map[M1.g1-1][M1.y1]==0:
                 M1.g1=M1.g1-1
             M1.px=M1.y1*50
             M1.py=M1.g1*50
             if rnd2==1 and map[M2.g1][M2.y1+1]==0:
+               
                 M2.y1=M2.y1+1
+                
             if rnd2==2 and map[M2.g1][M2.y1-1]==0:
+                
                 M2.y1=M2.y1-1
             if rnd2==3 and map[M2.g1+1][M2.y1]==0:
+                
                 M2.g1=M2.g1+1
             if rnd2==4 and map[M2.g1-1][M2.y1]==0:
+                
                 M2.g1=M2.g1-1
             M2.px=M2.y1*50
             M2.py=M2.g1*50
             if rnd3==1 and map[M3.g1][M3.y1+1]==0:
+                
                 M3.y1=M3.y1+1
             if rnd3==2 and map[M3.g1][M3.y1-1]==0:
+              
                 M3.y1=M3.y1-1
             if rnd3==3 and map[M3.g1+1][M3.y1]==0:
+               
                 M3.g1=M3.g1+1
             if rnd3==4 and map[M3.g1-1][M3.y1]==0:
+               
                 M3.g1=M3.g1-1
             M3.px=M3.y1*50
             M3.py=M3.g1*50
             if rnd4==1 and map[M4.g1][M4.y1+1]==0:
+                
                 M4.y1=M4.y1+1
             if rnd4==2 and map[M4.g1][M4.y1-1]==0:
+                
                 M4.y1=M4.y1-1
             if rnd4==3 and map[M4.g1+1][M4.y1]==0:
+                
                 M4.g1=M4.g1+1
             if rnd4==4 and map[M4.g1-1][M4.y1]==0:
+                
                 M4.g1=M4.g1-1
             M4.px=M4.y1*50
             M4.py=M4.g1*50
+        wct=wct+1
+        if wct==180:
+            wct=0
+            win=win-1
+            if by1==M1.y1 and bg1==M1.g1:
+                win=win-1
+            if by2==M2.y1 and bg2==M2.g1:
+                win=win-1
+            if by3==M3.y1 and bg3==M3.g1:
+                win=win-1
+            if by4==M4.y1 and bg4==M4.g1:
+                win=win-1
+            if win<=0:
+                print("you win")
+                break
+            print("win=",win)
+            print("by1=",by1)
+            print("bg1-",bg1)
+            print("M1.y1=",M1.y1)
+            print("M1.g1",M1.g1)
+
         pygame.display.update()
 
         # イベント処理
@@ -203,7 +244,14 @@ def main():
         if M4.g1==8 or M4.g1==0 or M4.y1==8 or M4.y1==0:
             print("you lost")
             break
-
+        by1=M1.y1
+        bg1=M1.g1
+        by2=M2.y1
+        bg2=M2.g1
+        by3=M3.y1
+        bg3=M3.g1
+        by4=M4.y1
+        bg4=M4.g1
     print("thank you for playing")        
 
 if __name__ == "__main__":
