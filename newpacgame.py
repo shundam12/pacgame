@@ -63,26 +63,26 @@ def main():
     hx=350
     hy=200
     SIZE=50
-    M1=Monster(pPng,1,1)
-    M2=Monster(p2Png,3,2)
+    M1=Monster(pPng,1,4)
+    M2=Monster(p2Png,4,1)
     M3=Monster(p3Png,4,7)
-    M4=Monster(p4Png,5,3)
+    M4=Monster(p4Png,7,4)
     win=100
     ct=0
     wct=0
     bg1=0
     hg=4
-    hr=7
+    hr=4
     hct=0
-    map=[[1,1,1,1,1,1,1,1,1,],
+    map=[[1,2,1,1,1,1,1,1,1,],
+         [1,0,0,0,0,0,0,0,4,],
          [1,0,0,0,0,0,0,0,1,],
-         [1,0,0,0,1,0,0,0,1,],
-         [1,0,0,0,1,0,0,0,1,],
-         [1,0,1,0,1,0,0,0,1,],
-         [1,0,0,1,0,0,1,0,1,],
-         [1,0,0,0,0,0,0,1,1,],
-         [0,0,0,0,0,0,0,0,1,],
-         [1,1,1,1,1,1,1,1,1,],]
+         [1,0,0,0,0,0,0,0,1,],
+         [1,0,0,0,0,0,0,0,1,],
+         [1,0,0,0,0,0,0,0,1,],
+         [1,0,0,0,0,0,0,0,1,],
+         [3,0,0,0,0,0,0,0,1,],
+         [1,1,1,1,1,1,1,5,1,],]
 
     ck = pygame.time.Clock()
     while True:
@@ -119,7 +119,7 @@ def main():
             M4.hp=0
         
         ct=ct+1
-        if ct==30:
+        if ct==20:
             ct=0
             if rnd1==1 and map[M1.g1][M1.y1+1]==0 :
                 
@@ -185,13 +185,13 @@ def main():
             wct=0
             win=win-1
             if by1==M1.y1 and bg1==M1.g1:
-                win=win-1
+                win=win-4
             if by2==M2.y1 and bg2==M2.g1:
-                win=win-1
+                win=win-4
             if by3==M3.y1 and bg3==M3.g1:
-                win=win-1
+                win=win-4
             if by4==M4.y1 and bg4==M4.g1:
-                win=win-1
+                win=win-4
             if win<=0:
                 print("you win")
                 break
@@ -205,7 +205,7 @@ def main():
 
         # イベント処理
         map[hg][hr]=1
-        hct=hct+1
+        hct=hct+2
         if hct>=30:
             for event in pygame.event.get():  # イベントを取得
                 if event.type == QUIT:        # 閉じるボタンが押されたら
@@ -216,16 +216,16 @@ def main():
                     oldhg=hg
                     if event.key==K_LEFT:
                         hr -=1  # 横方向の速度
-                        hct=0
+                        hct=hct-30
                     if event.key==K_RIGHT:
                         hr +=1  # 横方向の速度
-                        hct=0
+                        hct=hct-30
                     if event.key==K_UP:
                         hg -=1 # 横方向の速度
-                        hct=0
+                        hct=hct-30
                     if event.key==K_DOWN:
                         hg +=1  # 横方向の速度
-                        hct=0
+                        hct=hct-30
                     if hr>=8 or hr<=0:
                         hr=oldhr
                     if hg>=8 or hg<=0:
