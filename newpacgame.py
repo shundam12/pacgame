@@ -64,8 +64,8 @@ def main():
     hy=200
     SIZE=50
     M1=Monster(pPng,1,4)
-    M2=Monster(p2Png,4,1)
-    M3=Monster(p3Png,4,7)
+    M2=Monster(p2Png,4,7)
+    M3=Monster(p3Png,4,1)
     M4=Monster(p4Png,7,4)
     win=100
     ct=0
@@ -75,13 +75,13 @@ def main():
     hr=4
     hct=0
     map=[[1,2,1,1,1,1,1,1,1,],
-         [1,0,0,0,0,0,0,0,4,],
+         [1,0,0,0,0,0,0,0,3,],
          [1,0,0,0,0,0,0,0,1,],
          [1,0,0,0,0,0,0,0,1,],
          [1,0,0,0,0,0,0,0,1,],
          [1,0,0,0,0,0,0,0,1,],
          [1,0,0,0,0,0,0,0,1,],
-         [3,0,0,0,0,0,0,0,1,],
+         [4,0,0,0,0,0,0,0,1,],
          [1,1,1,1,1,1,1,5,1,],]
 
     ck = pygame.time.Clock()
@@ -95,7 +95,11 @@ def main():
         for g in range(9):
             for r in range(9):
                 if map[g][r]==1:
-                    pygame.draw.rect(screen, (255,0,0), Rect(SIZE*r,SIZE*g,SIZE,SIZE))
+                    pygame.draw.rect(screen, (100,100,100), Rect(SIZE*r,SIZE*g,SIZE,SIZE))
+        pygame.draw.rect(screen,(250,150,150),Rect(350,400,SIZE,SIZE))
+        pygame.draw.rect(screen,(255,0,0),Rect(0,350,SIZE,SIZE))
+        pygame.draw.rect(screen,(200,255,0),Rect(400,50,SIZE,SIZE))
+        pygame.draw.rect(screen,(0,0,255),Rect(50,0,SIZE,SIZE))
         M1.update(map)
         M2.update(map)
         M3.update(map)
@@ -119,7 +123,7 @@ def main():
             M4.hp=0
         
         ct=ct+1
-        if ct==20:
+        if ct==500:
             ct=0
             if rnd1==1 and map[M1.g1][M1.y1+1]==0 :
                 
@@ -130,14 +134,14 @@ def main():
             if rnd1==2 and map[M1.g1][M1.y1-1]==0:
                 
                 M1.y1=M1.y1-1
-            if rnd1==3 and map[M1.g1+1][M1.y1]==0:
+            if rnd1==3 and (map[M1.g1+1][M1.y1]==0 or map[M1.g1+1][M1.y1]==5):
                 
                 M1.g1=M1.g1+1
             if rnd1==4 and map[M1.g1-1][M1.y1]==0:
                 M1.g1=M1.g1-1
             M1.px=M1.y1*50
             M1.py=M1.g1*50
-            if rnd2==1 and map[M2.g1][M2.y1+1]==0:
+            if rnd2==1 and (map[M2.g1][M2.y1+1]==0 or map[M2.g1][M2.y1+1]==4):
                
                 M2.y1=M2.y1+1
                 
@@ -155,7 +159,7 @@ def main():
             if rnd3==1 and map[M3.g1][M3.y1+1]==0:
                 
                 M3.y1=M3.y1+1
-            if rnd3==2 and map[M3.g1][M3.y1-1]==0:
+            if rnd3==2 and (map[M3.g1][M3.y1-1]==0 or map[M3.g1][M3.y1-1]==3):
               
                 M3.y1=M3.y1-1
             if rnd3==3 and map[M3.g1+1][M3.y1]==0:
@@ -175,7 +179,7 @@ def main():
             if rnd4==3 and map[M4.g1+1][M4.y1]==0:
                 
                 M4.g1=M4.g1+1
-            if rnd4==4 and map[M4.g1-1][M4.y1]==0:
+            if rnd4==4 and (map[M4.g1-1][M4.y1]==0 or map[M4.g1-1][M4.y1]==2):
                 
                 M4.g1=M4.g1-1
             M4.px=M4.y1*50
@@ -206,7 +210,7 @@ def main():
         # イベント処理
         map[hg][hr]=1
         hct=hct+2
-        if hct>=30:
+        if hct>=300:
             for event in pygame.event.get():  # イベントを取得
                 if event.type == QUIT:        # 閉じるボタンが押されたら
                     pygame.quit()             
