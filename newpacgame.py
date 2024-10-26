@@ -14,17 +14,17 @@ class Monster:
     def update(self,map):
       #monster関連(75~91)
         self.ct=self.ct+1
-        if self.ct==3:
+        if self.ct==30:
             self.ct=0
             rnd1=random.randint(1,4)
         
-            if rnd1==1 and map[self.g1][self.y1+1]==0 :
+            if rnd1==1 and (map[self.g1][self.y1+1]==0  or map[self.g1][self.y1+1]==self.goal):
                 self.y1=self.y1+1
-            if rnd1==2 and map[self.g1][self.y1-1]==0:
+            if rnd1==2 and (map[self.g1][self.y1-1]==0 or map[self.g1][self.y1-1]==self.goal):
                 self.y1=self.y1-1
             if rnd1==3 and (map[self.g1+1][self.y1]==0 or map[self.g1+1][self.y1]==self.goal):
                 self.g1=self.g1+1
-            if rnd1==4 and map[self.g1-1][self.y1]==0:
+            if rnd1==4 and (map[self.g1-1][self.y1]==0 or map[self.g1-1][self.y1]==self.goal):
                 self.g1=self.g1-1
         
             
@@ -74,10 +74,10 @@ def main():
     hx=350
     hy=200
     SIZE=50
-    M1=Monster(pPng,0,1,5) #インスタンス化
+    M1=Monster(pPng,7,4,5) #インスタンス化
     M2=Monster(p2Png,4,7,4)
     M3=Monster(p3Png,4,1,3)
-    M4=Monster(p4Png,7,4,2)
+    M4=Monster(p4Png,1,4,2)
     Ms=[M1,M2,M3,M4]
     win=100
     ct=0
@@ -154,7 +154,7 @@ def main():
         # イベント処理
         map[hg][hr]=1
         hct=hct+2
-        if hct>=3:
+        if hct>=30:
             for event in pygame.event.get():  # イベントを取得
                 if event.type == QUIT:        # 閉じるボタンが押されたら
                     pygame.quit()             
