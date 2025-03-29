@@ -5,12 +5,12 @@ from pygame.locals import *
 def main():
     pygame.init()                                 # Pygameの初期化
     screen = pygame.display.set_mode((800,600))  # 800*600の画面
-    ar=[[0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0]]
+    ar=[[1,0,3,3,3,1,0,3],
+        [1,1,0,1,2,3,1,2],
+        [3,0,3,2,0,0,0,2],
+        [3,1,1,2,3,3,2,2],
+        [2,0,0,1,0,3,1,2],
+        [3,3,2,2,1,1,0,2]]
     stk=[]
     r=0
     g=0
@@ -21,23 +21,21 @@ def main():
     screen.fill((255,255,255))
     for gyou in range(6):
         for l in range(8):
-            rnd=random.randint(1,3)
             r=0
             g=0
             b=0
             y=gyou*100
             x=l*100
-            if rnd==1:
+            if ar[gyou][l]==1:
                 r=255
-            if rnd==2:
+            if ar[gyou][l]==2:
                 g=255
-            if rnd==3:
+            if ar[gyou][l]==3:
                 b=255
             pygame.draw.rect(screen,(r,g,b),Rect(x,y,200,200))
-            ar[gyou][l]=rnd
+        
 
     pygame.display.update()
-    print(ar)
     while True:
                 # イベント処理
         for event in pygame.event.get():  # イベントを取得
@@ -54,9 +52,10 @@ def main():
                 print(mapx,mapy,btn)
                 print("y-1",ar[mapy-1][mapx])
                 print("coler",ar[mapy][mapx])
-            #if mapy<3 and ar[mapy][mapx]==ar[mapy+1][mapx]:
+                
+            if btn==2 and mapy<5 and ar[mapy][mapx]==ar[mapy+1][mapx]:
                 stk.append(ar[mapy+1][mapx])
-            if mapx<3 and ar[mapy][mapx]==ar[mapy][mapx+1]:
+            if btn==2 and mapx<7 and ar[mapy][mapx]==ar[mapy][mapx+1]:
                 stk.append(ar[mapy][mapx+1])
             print(f"{mapy=} {mapx=}")
             if ar[mapy][mapx]==ar[mapy-1][mapx]:
@@ -64,6 +63,7 @@ def main():
             if ar[mapy][mapx]==ar[mapy][mapx-1]:
                 stk.append(ar[mapy][mapx-1])
             print(stk)
+        
             # horyu=stk.pop(0)
             # saikie.append(horyu)
             # if stk==[]:
@@ -75,4 +75,4 @@ def main():
 
 if __name__ == "__main__":
         main()
-        
+         
