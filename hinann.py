@@ -1,10 +1,7 @@
-import random
 map=[
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],]
-
-
+    [0,1,0,1],
+    [1,1,1,2],
+    [0,1,0,2],]
   # [
   # [0,2,0,-1],
   # [1,1,1,-1],
@@ -14,11 +11,6 @@ r=int(input())
 stk=[]
 pas=[]
 map2=[]
-for li in range(3):
-    for il in range(4):
-        rnd=random.randint(0,2)
-        map[li][il]=rnd
-print(map)
 
 while True:
     
@@ -66,22 +58,22 @@ for h in range(4):
         else:
             map4.append(map3[h][f])
     map5.append(map4)
-map5=list(filter(None,map5))
 print("map5=",map5)
-
-map6=[] 
-for q in range(len(map5)):
-    map6=[]
+map6=list(filter(None,map5))
+map7=[] 
+for q in range(4):
+    map7=[]
     for p in range(3):    
-        map6=map5[q]
+        map7=map6[q]
         if len(map6)<3:
-            map6.insert(0,-1)
-print("map5=",map5)
-map7=[]
+            map7.insert(0,-1)
+print("map6=",map6)
 map8=[]
+map9=[]
 for o in range(3):
-    map8=[]
-    for k in range(len(map5)):
-        map8.append(map5[k][o])
-    map7.append(map8)
-print(map7)
+    map9=[]
+    for k in range(4):
+        map9.append(map6[k][o])
+    map8.append(map9)
+print(map8)
+
